@@ -2,10 +2,12 @@ FROM java:7
 
 MAINTAINER René Schönfelder <schoenfelder2211@gmail.com>
 
-COPY . /usr/src/myapp
+RUN sbt assembly
 
-WORKDIR /usr/src/myapp
+USER daemon
 
-RUN javac Main.java
+ADD target/scala-2.11/*.jar /app
 
-CMD ["java", "Main"]
+ENTRYPOINT [ "java", "-jar", "/app/server.jar"]
+
+EXPOSE 8080
