@@ -7,11 +7,13 @@ RUN apt-key update
 RUN apt-get update
 RUN apt-get -y --force-yes install sbt
 
+WORKDIR /
+
 RUN sbt assembly
 
 USER daemon
 
-COPY target/scala-2.11/webclock-assembly-1.0.jar /app/webclock.jar
+COPY /target/scala-2.11/webclock-assembly-1.0.jar /app/webclock.jar
 
 WORKDIR /app
 
