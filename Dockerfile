@@ -7,7 +7,7 @@ RUN apt-key update
 RUN apt-get update
 RUN apt-get -y --force-yes install sbt
 
-WORKDIR /
+RUN sbt plugins
 
 RUN sbt assembly
 
