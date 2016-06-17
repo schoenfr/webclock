@@ -13,9 +13,9 @@ WORKDIR /prj
 
 RUN sbt assembly
 
-USER daemon
+COPY target/scala-2.11/webclock-assembly-1.0.jar /app/webclock.jar
 
-COPY /prj/target/scala-2.11/webclock-assembly-1.0.jar /app/webclock.jar
+USER daemon
 
 WORKDIR /app
 
